@@ -1,0 +1,24 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tellama
+  namespace: ollama
+spec:
+  selector:
+    matchLabels:
+      name: ollama
+  template:
+    metadata:
+      labels:
+        name: ollama
+    spec:
+      containers:
+      - name: tellama
+        image: default-route-openshift-image-registry.apps.da2.epheo.eu/ollama/tellama:latest
+        resources: {}
+        envFrom:
+        - secretRef:
+            name: ollama-secret
+      restartPolicy: Always
+      imagePullPolicy: Always
