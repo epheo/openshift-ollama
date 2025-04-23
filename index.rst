@@ -17,9 +17,6 @@ Running Mistral:7b LLM on OpenShift
 
 Running your local LLM model with Ollama on your OpenShift cluster.
 
-Introduction
-============
-
 `Ollama <https://ollama.ai/>`_ is an open-source tool that simplifies running and managing Large Language Models (LLMs) locally. It provides a simple API for managing model lifecycles and making inference requests.
 
 .. seealso::
@@ -30,19 +27,6 @@ Mistral is a powerful Large Language Model trained by a French start-up that cur
 outperforms other models of the same size. By combining Mistral with Ollama on OpenShift, you can run a production-grade LLM environment within your own infrastructure.
 
 All the files and configurations referenced in this article are available in the `openshift-ollama GitHub repository <https://github.com/epheo/openshift-ollama>`_.
-
-
-Pre-requirements
-================
-
-This tutorial uses the following components:
-
-* A single-node OpenShift cluster with an Nvidia RTX 3080 GPU
-* OpenShift configured with the `Nvidia GPU Operator <https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/openshift/introduction.html>`_
-* Basic familiarity with OpenShift and container concepts
-
-.. note::
-    If you don't have a GPU available, you can still follow this tutorial, but model loading and inference will be significantly slower on CPU.
 
 
 Running Mistral:7B on OpenShift
@@ -161,10 +145,10 @@ One of Ollama's powerful features is the ability to create custom models with sp
 This creates a new model called "ocplibrarian" that inherits all capabilities from Mistral:7b but has been given a specific persona and purpose through the SYSTEM instruction.
 
 
-Exploring Alternative Models: OpenHermes 2.5 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Alternative Models: OpenHermes 2.5 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Mistral isn't the only model you can run on Ollama. Let's also try OpenHermes 2.5, an instruction-tuned variant of Mistral that offers improved performance on many tasks:
+Mistral is one of many models you can run on Ollama. Let's also try OpenHermes 2.5, an instruction-tuned variant of Mistral that offers improved performance on many tasks:
 
 .. code-block:: bash
 
@@ -333,15 +317,12 @@ Enchanted offers a ChatGPT-like interface for interacting with your self-hosted 
 Performance Considerations
 ==========================
 
-Optimizing your Ollama deployment on OpenShift can significantly improve both inference speed and resource efficiency:
-
 GPU Selection
 ~~~~~~~~~~~~~
 
 While any NVIDIA GPU can run these models, performance varies considerably:
 
-* **RTX 3080/3090 or better**: Excellent for running multiple 7B models simultaneously with fast inference
-* **RTX 2000 series**: Adequate for single 7B model deployment
+* **RTX 3080/3090 or better**: Excellent for running multiple 7B models
 * **CPU-only**: Functional but with much slower inference speeds (5-10x slower)
 
 Model Quantization
@@ -373,11 +354,6 @@ Common challenges include:
 2. Memory limitations
 3. Network connectivity problems
 4. Model loading failures
-
-Conclusion
-==========
-
-By deploying Ollama on OpenShift with GPU acceleration, you can run powerful LLMs like Mistral:7B within your own infrastructure, maintaining full control over your data and model usage. The combination provides a flexible platform for AI application development with integrations spanning from developer tools to mobile applications.
 
 Security Considerations
 =======================
